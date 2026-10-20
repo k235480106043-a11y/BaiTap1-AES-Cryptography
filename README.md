@@ -7,7 +7,7 @@
 ---
 
 ## 1. Kiến trúc chương trình và Giải pháp kỹ thuật
-Chương trình được xây dựng trên nền tảng **.NET 10.0 (C# Console Application)** sử dụng thư viện mật mã chuẩn `System.Security.Cryptography.Aes` với các thông số kỹ thuật:
+Chương trình được xây dựng trên nền tảng **.NET 10.0 (C# Windows Forms Application - Cute Pastel Theme & Console)** sử dụng thư viện mật mã chuẩn `System.Security.Cryptography.Aes` với các thông số kỹ thuật:
 * **Độ dài khóa (Key Size):** 256 bits (`32 bytes`)
 * **Kích thước khối & Vector khởi tạo (Block Size / IV):** 128 bits (`16 bytes`)
 * **Chế độ mã hóa (Cipher Mode):** `CBC` (Cipher Block Chaining)
