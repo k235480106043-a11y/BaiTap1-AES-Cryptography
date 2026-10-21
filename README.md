@@ -34,7 +34,8 @@ Repository này chứa trọn bộ chương trình thực nghiệm và báo cáo
     ├── 📄 rsa_public_key.pem   # Khóa công khai RSA 2048-bit mẫu (PKCS#1)
     ├── 📄 rsa_private_key.pem  # Khóa bí mật RSA 2048-bit mẫu (PKCS#1)
     ├── 📄 sample_aes_key.txt   # Khóa AES 256-bit (32 bytes) mẫu dùng để mã hóa
-    └── 📄 rsa_encrypted_aes_key.base64 # Bản mã RSA của khóa AES (Base64)
+    ├── 📄 rsa_encrypted_aes_key.base64 # Bản mã RSA của khóa AES (Base64)
+    └── 📁 images/              # Toàn bộ 6 ảnh chụp màn hình minh chứng các chức năng Bài 2
 ```
 
 ---

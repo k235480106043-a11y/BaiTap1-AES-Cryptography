@@ -14,6 +14,19 @@ static class Program
             return;
         }
 
+        if (args.Length > 0 && args[0] == "--capture")
+        {
+            ApplicationConfiguration.Initialize();
+            MainForm f = new MainForm();
+            f.Show();
+            Application.DoEvents();
+            string imgDir = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..", "images"));
+            f.AutoCaptureTabs(imgDir);
+            f.Close();
+            Console.WriteLine("All 6 tab screenshots captured successfully into: " + imgDir);
+            return;
+        }
+
         ApplicationConfiguration.Initialize();
         Application.Run(new MainForm());
     }

@@ -1788,6 +1788,90 @@ namespace BaiTap2_RSA
             }
         }
 
+        public void AutoCaptureTabs(string imagesDir)
+        {
+            Directory.CreateDirectory(imagesDir);
+
+            // Tab 1: Sinh & xuất khóa
+            tabMain.SelectedIndex = 0;
+            Application.DoEvents();
+            CaptureForm(Path.Combine(imagesDir, "tab1_keygen.png"));
+
+            // Tab 2: Phân tích PEM
+            tabMain.SelectedIndex = 1;
+            Application.DoEvents();
+            CaptureForm(Path.Combine(imagesDir, "tab2_asn1_pem.png"));
+
+            // Tab 3: Mã hóa và Giải mã
+            tabMain.SelectedIndex = 2;
+            txtPlainText.Text = "FdK0zE8oO6R0KMUre/oTHYO+5tw38YtHETCarPgtRW8=";
+            btnEncrypt_Click(this, EventArgs.Empty);
+            btnDecrypt_Click(this, EventArgs.Empty);
+            Application.DoEvents();
+            CaptureForm(Path.Combine(imagesDir, "tab3_encrypt_decrypt.png"));
+
+            // Tab 4: Benchmark
+            tabMain.SelectedIndex = 3;
+            Application.DoEvents();
+            if (currentRsa != null)
+            {
+                var res = RsaHelper.RunBenchmark(currentRsa, 500);
+                lblPubOps.Text = $"{res.PublicOpsPerSec:F1} ops/s";
+                lblPrivOps.Text = $"{res.PrivateOpsPerSec:F1} ops/s";
+                lblSpeedRatio.Text = $"Public nhanh hơn: {res.SpeedRatio:F1}x";
+                txtBenchmarkReport.Text = res.GetDetailedReport();
+                prgBenchmark.Value = 100;
+            }
+            Application.DoEvents();
+            CaptureForm(Path.Combine(imagesDir, "tab4_benchmark.png"));
+
+            // Tab 5: SHA-256 & Avalanche
+            tabMain.SelectedIndex = 4;
+            txtShaInput.Text = "Nguyen Thi Ngoc Linh - K59KTP.K01";
+            byte[] b0 = Encoding.UTF8.GetBytes(txtShaInput.Text);
+            previousHash = RsaHelper.ComputeSha256(b0);
+            previousText = txtShaInput.Text;
+            txtPrevHashHex.Text = BitConverter.ToString(previousHash).Replace("-", "").ToLower();
+            Application.DoEvents();
+            txtShaInput.Text = "nguyen Thi Ngoc Linh - K59KTP.K01";
+            Application.DoEvents();
+            CaptureForm(Path.Combine(imagesDir, "tab5_avalanche_sha256.png"));
+
+            // Tab 6: Chữ ký số & PSS
+            tabMain.SelectedIndex = 5;
+            btnSign_Click(this, EventArgs.Empty);
+            btnTestPss3Times_Click(this, EventArgs.Empty);
+            btnVerifyAll3_Click(this, EventArgs.Empty);
+            Application.DoEvents();
+            CaptureForm(Path.Combine(imagesDir, "tab6_signature_pss.png"));
+        }
+
+        private void CaptureForm(string filePath)
+        {
+            this.BringToFront();
+            Application.DoEvents();
+            System.Threading.Thread.Sleep(150);
+            try
+            {
+                using (Bitmap bmp = new Bitmap(this.Bounds.Width, this.Bounds.Height))
+                {
+                    using (Graphics g = Graphics.FromImage(bmp))
+                    {
+                        g.CopyFromScreen(this.Location, Point.Empty, this.Bounds.Size);
+                    }
+                    bmp.Save(filePath, System.Drawing.Imaging.ImageFormat.Png);
+                }
+            }
+            catch
+            {
+                using (Bitmap bmp = new Bitmap(this.Width, this.Height))
+                {
+                    this.DrawToBitmap(bmp, new Rectangle(0, 0, this.Width, this.Height));
+                    bmp.Save(filePath, System.Drawing.Imaging.ImageFormat.Png);
+                }
+            }
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

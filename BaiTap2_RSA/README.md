@@ -29,6 +29,8 @@ Cặp khóa RSA 2048-bit được tạo tự động bằng thuật toán sinh s
 * **Public Key:** [`rsa_public_key.pem`](./rsa_public_key.pem) (Chuẩn PKCS#1, dung lượng 426 bytes).
 * **Private Key:** [`rsa_private_key.pem`](./rsa_private_key.pem) (Chuẩn PKCS#1, dung lượng 1.674 bytes).
 
+![Bước 1 & 2: Sinh và xuất cặp khóa RSA dạng PEM](./images/tab1_keygen.png)
+
 ---
 
 ### 2.2. Phân tích cấu trúc format PEM & Bóc tách ASN.1 DER (Yêu cầu 3 & 4)
@@ -63,6 +65,8 @@ Chuỗi DER bắt đầu bằng Tag `0x30` (`SEQUENCE`) bao gói danh sách các
 * **Private Exponent $d$ (Hex Preview):**
   `89 02 3C AA 6D 09 DE B6 23 B2 9F 71 A1 9D 8F 8A ... [208 bytes] ... 36 54 D9 9D FA 45 A0 A3 1F 17 1A 3D`
 
+![Bước 3 & 4: Cấu trúc PEM và Bóc tách ASN.1 DER](./images/tab2_asn1_pem.png)
+
 ---
 
 ### 2.3. Mã hóa & Giải mã dữ liệu $\le 190$ bytes (Khóa AES-256) (Yêu cầu 5 & 6)
@@ -80,6 +84,8 @@ $$\text{Max Plaintext} = \text{KeyBytes} - 2 \times \text{HashBytes} - 2 = 256 -
 | **Giá trị** | `FdK0zE8oO6R0KMUre/oTHYO+5tw38YtHETCarPgtRW8=` | `ZACmSi3ouhQAG9VNCSF1X6SeFinI1lHX...` | `FdK0zE8oO6R0KMUre/oTHYO+5tw38YtHETCarPgtRW8=` |
 | **Lưu trữ** | [`sample_aes_key.txt`](./sample_aes_key.txt) | [`rsa_encrypted_aes_key.base64`](./rsa_encrypted_aes_key.base64) | - |
 | **Đối chiếu Byte** | - | Khác biệt hoàn toàn (Mã hóa mạnh) | **KHỚP 100% (SequenceEqual = True)** |
+
+![Bước 5 & 6: Mã hóa và Giải mã RSA bọc khóa AES-256](./images/tab3_encrypt_decrypt.png)
 
 ---
 
@@ -104,6 +110,8 @@ Thực nghiệm đo đạc thực tế trên cùng một CPU thông qua 500 phé
    * Thuật toán Square-and-Multiply bắt buộc phải thực hiện **~2047 phép bình phương** và **~1024 phép nhân số nguyên lớn**.
    * Dù .NET đã áp dụng kỹ thuật tối ưu hóa cao cấp **Định lý số dư Trung Hoa (CRT)** tính riêng trên 2 nửa $d_p, d_q$ theo modulo 1024-bit $p, q$, phép tính Private Key vẫn tốn nhiều chu kỳ xử lý của CPU hơn gấp **30 lần**.
 
+![Bước 7: Đo lường Benchmark tốc độ Public Key vs Private Key](./images/tab4_benchmark.png)
+
 ---
 
 ### 2.5. Giao diện sinh chuỗi băm SHA-256 & Hiệu ứng Tuyết lở (Avalanche Effect) (Yêu cầu 8)
@@ -120,6 +128,8 @@ Hàm băm mật mã an toàn bắt buộc phải có **Hiệu ứng tuyết lở
 * **Số bit biến đổi:** **128 / 256 bits**
 * **Tỷ lệ biến đổi (Avalanche Rate):** đúng **50,00%** (khớp hoàn hảo với mức kỳ vọng lý thuyết xác suất ngẫu nhiên).
 * **Kết luận:** Hàm băm SHA-256 đạt tiêu chuẩn mật mã học tuyệt đối, ngăn chặn hoàn toàn khả năng đảo ngược hoặc tấn công tìm tiền ảnh (pre-image attack).
+
+![Bước 8: Sinh băm SHA-256 và Hiệu ứng Tuyết lở (Avalanche Effect)](./images/tab5_avalanche_sha256.png)
 
 ---
 
@@ -152,6 +162,8 @@ Nếu khớp: xác nhận dữ liệu vẹn toàn 100% và đúng xuất xứ t�
 | **Lần ký 3** | RSASSA-PSS (Salt 3) | `C/1u0T3CRlabpRZEfMsgcnFT0KaoXzqT9UY...` | **HỢP LỆ (Valid = True) ✅** |
 
 $\Rightarrow$ **Kết luận:** Cả 3 chữ ký khác biệt nhau 100% nhưng đều được xác minh HỢP LỆ tuyệt đối với cùng một Public Key!
+
+![Bước 9: Thử nghiệm Chữ ký số và Cơ chế PSS với Muối ngẫu nhiên (Random Salt)](./images/tab6_signature_pss.png)
 
 ---
 
