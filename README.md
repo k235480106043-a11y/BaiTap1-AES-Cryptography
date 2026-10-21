@@ -1,61 +1,98 @@
-# BÀI TẬP 1: MÃ HÓA ĐỐI XỨNG AES (.NET C#)
+# AES_RSA_BAITAP: HỆ THỐNG MÃ HÓA MẬT MÃ AES & RSA (.NET C#)
 
-**Họ và tên:** Nguyễn Thị Ngọc Linh  
-**Lớp:** K59KMT.K01 (K59KTP.K01)  
-**Môn học:** An toàn và bảo mật thông tin  
-
----
-
-## 1. Kiến trúc chương trình và Giải pháp kỹ thuật
-Chương trình được xây dựng trên nền tảng **.NET 10.0 (C# Windows Forms Application - Cute Pastel Theme & Console)** sử dụng thư viện mật mã chuẩn `System.Security.Cryptography.Aes` với các thông số kỹ thuật:
-* **Độ dài khóa (Key Size):** 256 bits (`32 bytes`)
-* **Kích thước khối & Vector khởi tạo (Block Size / IV):** 128 bits (`16 bytes`)
-* **Chế độ mã hóa (Cipher Mode):** `CBC` (Cipher Block Chaining)
-* **Cơ chế đệm (Padding Mode):** `PKCS7`
-* **Xử lý File lớn (Hàng GB):** Sử dụng cơ chế đọc/ghi theo luồng (`FileStream` kết hợp `CryptoStream`) với kích thước bộ đệm (Buffer Size) `1 MB (1.048.576 bytes)` và đối chiếu mảng byte bằng `Span<byte>.SequenceEqual` (tối ưu hóa tập lệnh vector SIMD), giúp xử lý file hàng GB mượt mà mà không gây tràn bộ nhớ RAM (`OutOfMemoryException`).
+**Học phần:** An toàn và bảo mật thông tin  
+**Sinh viên thực hiện:** Nguyễn Thị Ngọc Linh  
+**Lớp:** K59KTP.K01 (K59KMT.K01)  
+**Nền tảng:** .NET 10.0 (C# Windows Forms Application - Soft Pastel Aesthetic & CLI Automation)
 
 ---
 
-## 2. Kết quả thực nghiệm từng bước
+## 📌 Tổng quan đồ án (Repository Overview)
 
-### 2.1. Sinh khóa AES, Lưu khóa ra file và Import khóa từ file (Yêu cầu 1, 2, 3)
-* **Key sinh ra (Base64):** `NChNXkkgBod0Af7Jcq+KPfKYgB+ASOPvVa0CMW2AkqA=` (`32 bytes`)
-* **IV sinh ra (Base64):** `4dOfF12ZruDqFa3o3Vxi6w==` (`16 bytes`)
-* Khóa và IV được lưu trữ ra file [`aes_key.txt`](./aes_key.txt) và nạp (import) ngược lại thành công vào chương trình.
+Repository này chứa trọn bộ chương trình thực nghiệm và báo cáo khoa học của 2 bài tập lớn môn **An toàn và bảo mật thông tin**, bao gồm đầy đủ mã hóa đối xứng (Symmetric Cryptography - AES) và mã hóa bất đối xứng (Asymmetric Cryptography - RSA) kết hợp Chữ ký số và hàm băm SHA-256.
 
-![Bước 1, 2, 3: Sinh khóa, Lưu khóa và Import khóa](./images/step1_2_3_key.png)
+```
+📁 AES_RSA_BAITAP/
+├── 📄 AES_RSA_BAITAP.txt       # Đề bài và yêu cầu chi tiết môn học
+├── 📄 README.md                # Tài liệu tổng quan (file hiện tại)
+├── 📁 BaiTap1_AES/             # BÀI 1: MÃ HÓA ĐỐI XỨNG AES-256
+│   ├── 📁 BaiTap1_AES/         # Mã nguồn dự án C# Windows Forms (.NET 10.0)
+│   ├── 📄 BaiTap1_AES.slnx     # Visual Studio Solution
+│   ├── 📄 README.md            # Báo cáo chi tiết Bài 1 (Đo đạc file 1GB, bảng số liệu)
+│   ├── 📄 aes_key.txt          # Khóa AES-256 (32 bytes) & IV (16 bytes) mẫu
+│   └── 📁 images/              # Ảnh chụp màn hình minh chứng thực nghiệm Bài 1
+│
+└── 📁 BaiTap2_RSA/             # BÀI 2: MÃ HÓA BẤT ĐỐI XỨNG RSA & CHỮ KÝ SỐ
+    ├── 📁 BaiTap2_RSA/         # Mã nguồn dự án C# Windows Forms & CLI (.NET 10.0)
+    │   ├── Program.cs          # Điểm khởi chạy app & Runner tự động CLI
+    │   ├── MainForm.cs         # Giao diện chính 6 Tabs Soft Pastel Aesthetic
+    │   ├── RsaHelper.cs        # Xử lý ASN.1 DER TLV, RSA, Benchmark, PSS
+    │   └── CustomControls.cs   # Custom rounded button, card, badge
+    ├── 📄 BaiTap2_RSA.sln      # Solution chuẩn cho Visual Studio
+    ├── 📄 BaiTap2_RSA.slnx     # Solution định dạng mới
+    ├── 📄 README.md            # Báo cáo chi tiết Bài 2 (ASN.1 TLV, Benchmark, PSS)
+    ├── 📄 rsa_public_key.pem   # Khóa công khai RSA 2048-bit mẫu (PKCS#1)
+    ├── 📄 rsa_private_key.pem  # Khóa bí mật RSA 2048-bit mẫu (PKCS#1)
+    ├── 📄 sample_aes_key.txt   # Khóa AES 256-bit (32 bytes) mẫu dùng để mã hóa
+    └── 📄 rsa_encrypted_aes_key.base64 # Bản mã RSA của khóa AES (Base64)
+```
 
 ---
 
-### 2.2. Mã hóa và Giải mã đoạn văn bản xuất ra màn hình (Yêu cầu 4)
-* **Dữ liệu đầu vào (Plaintext):** `Nguyen Thi Ngoc Linh - K59KTP.K01`
-* **Bản mã (Ciphertext - Base64):** `iLb7J5crfOvRBF2bffSKzZX8wDGvy528UanMRQVgiLwJQmGLbDIvkauR8imm6ZPi`
-* **Bản mã (Ciphertext - Hex):** `88B6FB27972B7CEBD1045D9B7DF48ACD95FCC031AFCB9DBC51A9CC45056088BC0942618B6C322F91AB91F229A6E993E2`
-* **Giải mã ngược lại:** `Nguyen Thi Ngoc Linh - K59KTP.K01` *(Khớp 100% với văn bản gốc)*.
+## 🚀 Tóm tắt nội dung 2 bài tập
 
-![Bước 4: Mã hóa và Giải mã văn bản](./images/step4_text.png)
+### 💖 1. [Bài Tập 1: Mã Hóa Đối Xứng AES-256 (CBC • PKCS7)](./BaiTap1_AES/README.md)
+* **Kích thước khóa:** AES 256-bit (`32 bytes`), Vector khởi tạo IV (`16 bytes`).
+* **Tính năng:**
+  1. Sinh khóa AES và IV ngẫu nhiên an toàn mật mã (`RandomNumberGenerator`).
+  2. Xuất khóa ra file [`aes_key.txt`](./BaiTap1_AES/aes_key.txt).
+  3. Import khóa từ file vào chương trình.
+  4. Mã hóa đoạn văn bản xuất kết quả Base64/Hex ra màn hình và giải mã đối chiếu.
+  5. **Thực nghiệm File lớn (1 GB - 1.073.741.824 bytes):**
+     * Thời gian mã hóa: **1,739 giây** (Tốc độ: **588,85 MB/s**).
+     * Thời gian giải mã: **1,195 giây** (Tốc độ: **856,75 MB/s**).
+     * Đối chiếu từng byte (`Byte-by-Byte`): **GIỐNG NHAU 100%**.
+     * Giải thích chi tiết hiện tượng file tăng 16 bytes theo cơ chế đệm **PKCS7**.
+* Chi tiết xem tại: 👉 [**README Bài 1**](./BaiTap1_AES/README.md)
 
 ---
 
-### 2.3. Thử nghiệm với File dung lượng lớn (1 GB), Đo thời gian & So sánh Bytes (Yêu cầu 5)
+### 💜 2. [Bài Tập 2: Mã Hóa Bất Đối Xứng RSA & Chữ Ký Số](./BaiTap2_RSA/README.md)
+* **Độ dài khóa:** Hỗ trợ 1024, 2048 (khuyên dùng), 4096-bit.
+* **Tính năng:**
+  1. **Sinh cặp khóa RSA:** Tự động tạo cặp khóa chuẩn mật mã.
+  2. **Xuất file PEM:** Chuẩn PKCS#1 (`BEGIN RSA PUBLIC/PRIVATE KEY`) và PKCS#8.
+  3. **Phân tích ASN.1 DER:** Bóc tách ý nghĩa từng byte/trường (`Version`, `Modulus n`, `Exponent e`, `Private Exponent d`, `Prime 1 p`, `Prime 2 q`, `dp`, `dq`, `iqmp`).
+  4. **Import PEM:** Trích xuất $(n, e)$ cho Public Key và $(n, e, d, p, q, \dots)$ cho Private Key.
+  5. **Mã hóa dữ liệu $\le 190$ bytes:** Mô hình bọc khóa đối xứng AES-256 (32 bytes) bằng RSA-2048 OAEP-SHA256.
+  6. **Giải mã & Đối chiếu:** Đọc file Base64, giải mã bằng Private Key $\rightarrow$ Khớp **100%**.
+  7. **Benchmark tốc độ:** So sánh Public Key ($e = 65537$ nhỏ) vs Private Key ($d$ lớn):
+     * Public Key: **~49.778 ops/s** (Lũy thừa nhị phân chỉ mất 17 phép tính).
+     * Private Key: **~1.654 ops/s** (Phải tính hàng ngàn phép nhân số lớn dù có CRT).
+     * $\Rightarrow$ **Public Key nhanh hơn gấp ~30 lần!**
+  8. **Băm SHA-256 & Hiệu ứng Tuyết lở (Avalanche Effect):** Đổi 1 ký tự $\rightarrow$ Đảo lật **128/256 bits (50,00%)** ở đầu ra.
+  9. **Chữ ký số & Đề xuất cơ chế chữ ký ngẫu nhiên:**
+     * Đề xuất chuẩn **RSASSA-PSS (RFC 8017)** với **Random Salt (Muối ngẫu nhiên)**.
+     * Cùng 1 dữ liệu, cùng 1 người ký $\rightarrow$ Mỗi lần ký tạo ra 1 chữ ký số khác nhau 100%, nhưng cùng 1 Public Key vẫn xác thực hợp lệ tuyệt đối.
+* Chi tiết xem tại: 👉 [**README Bài 2**](./BaiTap2_RSA/README.md)
 
-#### a) Bảng số liệu đo đạc thực tế
-Thực nghiệm được tiến hành trên file nhị phân `test_1GB.bin` có dung lượng **1 GB (1.024,00 MB = 1.073.741.824 bytes)**:
+---
 
-| Tiêu chí đo lường | File Nguồn (`test_1GB.bin`) | File Mã hóa (`test_1GB.bin.aes`) | File Giải mã (`test_1GB.bin.decrypted.bin`) |
-| :--- | :--- | :--- | :--- |
-| **Kích thước (Bytes)** | `1.073.741.824` bytes | `1.073.741.840` bytes *(+16 bytes)* | `1.073.741.824` bytes |
-| **Thời gian thực thi** | - | **1,739 giây** (`1738 ms`) | **1,195 giây** (`1195 ms`) |
-| **Tốc độ xử lý trung bình** | - | **588,85 MB/s** | **856,75 MB/s** |
-| **So sánh Byte-by-Byte** | - | Khác biệt hoàn toàn | **GIỐNG NHAU 100%** *(Mất 0,476 giây)* |
+## 🛠️ Hướng dẫn khởi chạy
 
-![Bước 5: Thực nghiệm File 1GB và So sánh Bytes](./images/step5_largefile.png)
+Cả hai dự án đều được viết bằng **.NET 10.0 C#** và có thể mở trực tiếp trong Visual Studio 2022 / Rider / VS Code:
 
-#### b) Kết luận dựa theo số liệu thu được
-1. **Hiệu năng và tốc độ thực thi rất cao:**
-   * Thuật toán đối xứng AES-256 xử lý khối lượng dữ liệu lớn (1 GB) cực kỳ nhanh chóng: quá trình mã hóa chỉ mất **1,739 giây** (tốc độ **588,85 MB/s**) và quá trình giải mã mất **1,195 giây** (tốc độ **856,75 MB/s**).
-   * Tốc độ giải mã đạt cao hơn tốc độ mã hóa do trong chế độ `CBC` (Cipher Block Chaining), quá trình mã hóa phải thực hiện tuần tự từng khối (khối sau phụ thuộc kết quả XOR với bản mã của khối trước), trong khi quá trình giải mã `CBC` cho phép CPU giải mã song song nhiều khối cùng lúc kết hợp với cơ chế tăng tốc phần cứng **AES-NI** và bộ nhớ đệm tập tin của hệ điều hành (OS File Cache).
-2. **Sự thay đổi kích thước file (Giải thích việc tăng 16 bytes ở file `.aes`):**
-   * File nguồn có kích thước `1.073.741.824` bytes chia hết chẵn cho kích thước khối 16 bytes của AES. Theo chuẩn đệm **PKCS7**, khi dữ liệu gốc chia hết cho kích thước khối, thuật toán bắt buộc chèn thêm 1 khối đệm đầy đủ gồm **16 bytes** (mỗi byte mang giá trị `0x10`) vào cuối bản mã (`1.073.741.840` bytes) để khi giải mã có thể xác định và loại bỏ phần đệm một cách chính xác, không bị nhầm lẫn với dữ liệu thật ở cuối file.
-3. **Tính toàn vẹn dữ liệu tuyệt đối:**
-   * Sau khi giải mã, kích thước file trở về đúng `1.073.741.824` bytes. Phép kiểm chứng đối sánh từng byte (`Byte-by-Byte Comparison`) hoàn tất trong **0,476 giây** và xác nhận file sau giải mã **khớp 100% từng byte** so với file nguồn ban đầu.
+### Chạy Bài 1 (AES):
+```powershell
+dotnet run --project BaiTap1_AES\BaiTap1_AES\BaiTap1_AES.csproj
+```
+
+### Chạy Bài 2 (RSA & Chữ ký số):
+* **Giao diện đồ họa (GUI):**
+  ```powershell
+  dotnet run --project BaiTap2_RSA\BaiTap2_RSA\BaiTap2_RSA.csproj
+  ```
+* **Chế độ kiểm thử tự động (CLI):**
+  ```powershell
+  dotnet run --project BaiTap2_RSA\BaiTap2_RSA\BaiTap2_RSA.csproj -- --cli
+  ```
