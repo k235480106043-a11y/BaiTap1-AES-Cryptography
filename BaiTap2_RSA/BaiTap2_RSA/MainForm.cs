@@ -93,31 +93,32 @@ namespace BaiTap2_RSA
         {
             // Thiết lập cửa sổ chính
             this.Text = "💜 Bài 2: Mã Hóa Bất Đối Xứng RSA & Chữ Ký Số (.NET) • Nguyễn Thị Ngọc Linh";
-            this.Size = new Size(1250, 920);
-            this.MinimumSize = new Size(1200, 860);
+            this.Size = new Size(1250, 845);
+            this.MinimumSize = new Size(1150, 750);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.BackColor = Color.FromArgb(248, 246, 252);
             this.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
+            this.AutoScroll = true;
 
             // ==============================================================
             // 1. BANNER TIÊU ĐỀ SANG TRỌNG
             // ==============================================================
             CuteCard cardHeader = new CuteCard
             {
-                Location = new Point(16, 12),
-                Size = new Size(1202, 76),
+                Location = new Point(16, 10),
+                Size = new Size(1202, 68),
                 CardBackground = Color.White,
                 BorderColor = Color.FromArgb(225, 215, 245),
-                CornerRadius = 16
+                CornerRadius = 14
             };
 
             Label lblTitle = new Label
             {
                 Text = "🔐 BÀI 2: MÃ HÓA BẤT ĐỐI XỨNG RSA & CHỮ KÝ SỐ (.NET C#)",
                 UseMnemonic = false,
-                Font = new Font("Segoe UI", 13.5F, FontStyle.Bold),
+                Font = new Font("Segoe UI", 13F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(106, 27, 154),
-                Location = new Point(18, 11),
+                Location = new Point(16, 9),
                 AutoSize = true
             };
 
@@ -125,17 +126,17 @@ namespace BaiTap2_RSA
             {
                 Text = "🌸 Sinh viên: Nguyễn Thị Ngọc Linh  |  Lớp: K59KTP.K01  |  Học phần: An toàn và bảo mật thông tin",
                 UseMnemonic = false,
-                Font = new Font("Segoe UI", 9.5F, FontStyle.Regular),
+                Font = new Font("Segoe UI", 9.25F, FontStyle.Regular),
                 ForeColor = Color.FromArgb(142, 36, 170),
-                Location = new Point(20, 41),
+                Location = new Point(18, 37),
                 AutoSize = true
             };
 
             CuteButton btnCopyLog = new CuteButton
             {
                 Text = "📋 Sao chép Log",
-                Size = new Size(140, 36),
-                Location = new Point(915, 20),
+                Size = new Size(135, 34),
+                Location = new Point(920, 17),
                 NormalColor = Color.FromArgb(156, 39, 176),
                 HoverColor = Color.FromArgb(142, 36, 170)
             };
@@ -151,8 +152,8 @@ namespace BaiTap2_RSA
             CuteButton btnClearLog = new CuteButton
             {
                 Text = "🧹 Xóa Log",
-                Size = new Size(120, 36),
-                Location = new Point(1065, 20),
+                Size = new Size(115, 34),
+                Location = new Point(1065, 17),
                 NormalColor = Color.FromArgb(186, 104, 200),
                 HoverColor = Color.FromArgb(171, 71, 188)
             };
@@ -166,10 +167,10 @@ namespace BaiTap2_RSA
             // ==============================================================
             tabMain = new TabControl
             {
-                Location = new Point(16, 96),
-                Size = new Size(1202, 575),
+                Location = new Point(16, 85),
+                Size = new Size(1202, 540),
                 Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
-                Padding = new Point(12, 8)
+                Padding = new Point(12, 7)
             };
 
             TabPage tab1 = BuildTab1KeyGen();
@@ -187,8 +188,8 @@ namespace BaiTap2_RSA
             // ==============================================================
             CuteCard cardLog = new CuteCard
             {
-                Location = new Point(16, 680),
-                Size = new Size(1202, 185),
+                Location = new Point(16, 632),
+                Size = new Size(1202, 160),
                 CardBackground = Color.White,
                 BorderColor = Color.FromArgb(225, 215, 245),
                 CornerRadius = 14
@@ -206,8 +207,8 @@ namespace BaiTap2_RSA
 
             txtGlobalLog = new TextBox
             {
-                Location = new Point(12, 30),
-                Size = new Size(1178, 142),
+                Location = new Point(12, 28),
+                Size = new Size(1178, 122),
                 Multiline = true,
                 ScrollBars = ScrollBars.Vertical,
                 ReadOnly = true,
@@ -228,15 +229,15 @@ namespace BaiTap2_RSA
 
             CuteCard cardGen = new CuteCard
             {
-                Location = new Point(14, 14),
-                Size = new Size(1174, 75),
+                Location = new Point(14, 10),
+                Size = new Size(1174, 66),
                 CardBackground = Color.White
             };
 
             Label lblSize = new Label
             {
                 Text = "Độ dài khóa (Key Size):",
-                Location = new Point(16, 26),
+                Location = new Point(16, 22),
                 AutoSize = true,
                 Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(70, 70, 80)
@@ -244,7 +245,7 @@ namespace BaiTap2_RSA
 
             cboKeySize = new ComboBox
             {
-                Location = new Point(185, 23),
+                Location = new Point(190, 19),
                 Size = new Size(210, 28),
                 DropDownStyle = ComboBoxStyle.DropDownList,
                 Font = new Font("Segoe UI", 9.5F)
@@ -255,8 +256,8 @@ namespace BaiTap2_RSA
             CuteButton btnGenKey = new CuteButton
             {
                 Text = "🎲 Sinh Cặp Khóa RSA Mới",
-                Size = new Size(240, 38),
-                Location = new Point(415, 17),
+                Size = new Size(230, 38),
+                Location = new Point(415, 14),
                 NormalColor = Color.FromArgb(124, 77, 255),
                 HoverColor = Color.FromArgb(101, 51, 238)
             };
@@ -265,8 +266,8 @@ namespace BaiTap2_RSA
             badgeKeyStatus = new CuteBadge
             {
                 Text = "Chưa sinh khóa",
-                Size = new Size(480, 36),
-                Location = new Point(675, 18)
+                Size = new Size(500, 36),
+                Location = new Point(660, 15)
             };
 
             cardGen.Controls.AddRange(new Control[] { lblSize, cboKeySize, btnGenKey, badgeKeyStatus });
@@ -275,8 +276,8 @@ namespace BaiTap2_RSA
             // Khung hiển thị Public Key
             CuteCard cardPublic = new CuteCard
             {
-                Location = new Point(14, 100),
-                Size = new Size(577, 420),
+                Location = new Point(14, 84),
+                Size = new Size(577, 416),
                 CardBackground = Color.White
             };
             Label lblPub = new Label
@@ -289,8 +290,8 @@ namespace BaiTap2_RSA
             };
             txtPublicPemTab1 = new TextBox
             {
-                Location = new Point(14, 40),
-                Size = new Size(547, 300),
+                Location = new Point(14, 38),
+                Size = new Size(547, 305),
                 Multiline = true,
                 ScrollBars = ScrollBars.Vertical,
                 Font = new Font("Consolas", 9F),
@@ -329,8 +330,8 @@ namespace BaiTap2_RSA
             // Khung hiển thị Private Key
             CuteCard cardPrivate = new CuteCard
             {
-                Location = new Point(611, 100),
-                Size = new Size(577, 420),
+                Location = new Point(611, 84),
+                Size = new Size(577, 416),
                 CardBackground = Color.White
             };
             Label lblPriv = new Label
@@ -343,8 +344,8 @@ namespace BaiTap2_RSA
             };
             txtPrivatePemTab1 = new TextBox
             {
-                Location = new Point(14, 40),
-                Size = new Size(547, 300),
+                Location = new Point(14, 38),
+                Size = new Size(547, 305),
                 Multiline = true,
                 ScrollBars = ScrollBars.Vertical,
                 Font = new Font("Consolas", 9F),
@@ -366,8 +367,8 @@ namespace BaiTap2_RSA
                 Text = "📋 Copy Private PEM",
                 Size = new Size(210, 42),
                 Location = new Point(270, 355),
-                NormalColor = Color.FromArgb(229, 57, 53),
-                HoverColor = Color.FromArgb(211, 47, 47)
+                NormalColor = Color.FromArgb(216, 27, 96),
+                HoverColor = Color.FromArgb(190, 20, 80)
             };
             btnCopyPriv.Click += (s, e) =>
             {
@@ -451,8 +452,8 @@ namespace BaiTap2_RSA
 
             CuteCard cardTop = new CuteCard
             {
-                Location = new Point(14, 12),
-                Size = new Size(1174, 68),
+                Location = new Point(14, 10),
+                Size = new Size(1174, 64),
                 CardBackground = Color.White
             };
 
@@ -460,7 +461,7 @@ namespace BaiTap2_RSA
             {
                 Text = "📂 Nhập File PEM (.pem/.txt)",
                 Size = new Size(230, 38),
-                Location = new Point(14, 15),
+                Location = new Point(14, 13),
                 NormalColor = Color.FromArgb(106, 27, 154),
                 HoverColor = Color.FromArgb(74, 20, 140)
             };
@@ -470,7 +471,7 @@ namespace BaiTap2_RSA
             {
                 Text = "🌐 Nạp Public Key Vừa Sinh",
                 Size = new Size(220, 38),
-                Location = new Point(255, 15),
+                Location = new Point(255, 13),
                 NormalColor = Color.FromArgb(46, 125, 50),
                 HoverColor = Color.FromArgb(36, 105, 40)
             };
@@ -489,7 +490,7 @@ namespace BaiTap2_RSA
             {
                 Text = "🔒 Nạp Private Key Vừa Sinh",
                 Size = new Size(220, 38),
-                Location = new Point(485, 15),
+                Location = new Point(485, 13),
                 NormalColor = Color.FromArgb(198, 40, 40),
                 HoverColor = Color.FromArgb(170, 30, 30)
             };
@@ -510,8 +511,8 @@ namespace BaiTap2_RSA
             // Bảng phân tích cấu trúc ASN.1
             CuteCard cardTable = new CuteCard
             {
-                Location = new Point(14, 90),
-                Size = new Size(720, 430),
+                Location = new Point(14, 82),
+                Size = new Size(746, 420),
                 CardBackground = Color.White
             };
             Label lblGrid = new Label
@@ -519,26 +520,40 @@ namespace BaiTap2_RSA
                 Text = "📊 Bóc Tách Các Trường ASN.1 DER (Ý nghĩa từng Byte/Tham số):",
                 Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(70, 70, 80),
-                Location = new Point(14, 10),
+                Location = new Point(12, 10),
                 AutoSize = true
             };
             dgvAsn1 = new DataGridView
             {
-                Location = new Point(14, 35),
-                Size = new Size(692, 380),
+                Location = new Point(12, 35),
+                Size = new Size(722, 372),
                 BackgroundColor = Color.White,
                 BorderStyle = BorderStyle.None,
                 RowHeadersVisible = false,
                 AllowUserToAddRows = false,
                 ReadOnly = true,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None,
+                EnableHeadersVisualStyles = false,
+                ColumnHeadersHeight = 32
             };
-            dgvAsn1.Columns.Add("Field", "Tên Trường");
-            dgvAsn1.Columns.Add("Symbol", "Ký Hiệu");
-            dgvAsn1.Columns.Add("Tag", "Tag ASN.1");
-            dgvAsn1.Columns.Add("Preview", "Giá Trị Hex Mẫu");
-            dgvAsn1.Columns.Add("Explanation", "Ý Nghĩa Toán Học / Mật Mã");
+            dgvAsn1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(243, 238, 252);
+            dgvAsn1.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(74, 20, 140);
+            dgvAsn1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dgvAsn1.DefaultCellStyle.Font = new Font("Segoe UI", 8.5F);
+            dgvAsn1.RowTemplate.Height = 28;
+
+            int c0 = dgvAsn1.Columns.Add("Field", "Tên Trường");
+            dgvAsn1.Columns[c0].Width = 125;
+            int c1 = dgvAsn1.Columns.Add("Symbol", "Ký Hiệu");
+            dgvAsn1.Columns[c1].Width = 75;
+            int c2 = dgvAsn1.Columns.Add("Tag", "Tag ASN.1");
+            dgvAsn1.Columns[c2].Width = 105;
+            int c3 = dgvAsn1.Columns.Add("Preview", "Giá Trị Hex Mẫu");
+            dgvAsn1.Columns[c3].Width = 145;
+            int c4 = dgvAsn1.Columns.Add("Explanation", "Ý Nghĩa Toán Học / Mật Mã");
+            dgvAsn1.Columns[c4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvAsn1.Columns[c4].MinimumWidth = 240;
 
             cardTable.Controls.AddRange(new Control[] { lblGrid, dgvAsn1 });
             tab.Controls.Add(cardTable);
@@ -546,8 +561,8 @@ namespace BaiTap2_RSA
             // Khung tóm tắt tham số (n, e) hoặc (n, e, d, p, q, dp, dq, iqmp)
             CuteCard cardSummary = new CuteCard
             {
-                Location = new Point(748, 90),
-                Size = new Size(440, 430),
+                Location = new Point(768, 82),
+                Size = new Size(420, 420),
                 CardBackground = Color.White
             };
             Label lblSum = new Label
@@ -555,13 +570,13 @@ namespace BaiTap2_RSA
                 Text = "📐 Tham Số Toán Học Đã Trích Xuất:",
                 Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(70, 70, 80),
-                Location = new Point(14, 10),
+                Location = new Point(12, 10),
                 AutoSize = true
             };
             txtParamSummary = new TextBox
             {
-                Location = new Point(14, 35),
-                Size = new Size(412, 220),
+                Location = new Point(12, 35),
+                Size = new Size(396, 215),
                 Multiline = true,
                 ScrollBars = ScrollBars.Vertical,
                 Font = new Font("Consolas", 8.5F),
@@ -574,13 +589,13 @@ namespace BaiTap2_RSA
                 Text = "Nội dung PEM đang kiểm tra:",
                 Font = new Font("Segoe UI", 8.5F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(100, 100, 110),
-                Location = new Point(14, 265),
+                Location = new Point(12, 258),
                 AutoSize = true
             };
             txtPemInput = new TextBox
             {
-                Location = new Point(14, 288),
-                Size = new Size(412, 130),
+                Location = new Point(12, 280),
+                Size = new Size(396, 127),
                 Multiline = true,
                 ScrollBars = ScrollBars.Vertical,
                 Font = new Font("Consolas", 8F),
@@ -652,8 +667,8 @@ namespace BaiTap2_RSA
             // Khung nhập Plaintext
             CuteCard cardInput = new CuteCard
             {
-                Location = new Point(14, 12),
-                Size = new Size(1174, 125),
+                Location = new Point(14, 10),
+                Size = new Size(1174, 118),
                 CardBackground = Color.White
             };
 
@@ -671,14 +686,14 @@ namespace BaiTap2_RSA
                 Text = "0 / 190 bytes",
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(46, 125, 50),
-                Location = new Point(1040, 10),
+                Location = new Point(960, 10),
                 AutoSize = true
             };
 
             txtPlainText = new TextBox
             {
-                Location = new Point(14, 35),
-                Size = new Size(840, 48),
+                Location = new Point(14, 34),
+                Size = new Size(830, 46),
                 Multiline = true,
                 Font = new Font("Consolas", 9.5F)
             };
@@ -692,8 +707,8 @@ namespace BaiTap2_RSA
             CuteButton btnGenAesKey = new CuteButton
             {
                 Text = "🔑 Tạo Khóa AES (32 bytes)",
-                Size = new Size(290, 40),
-                Location = new Point(870, 35),
+                Size = new Size(305, 42),
+                Location = new Point(855, 34),
                 NormalColor = Color.FromArgb(124, 77, 255),
                 HoverColor = Color.FromArgb(101, 51, 238)
             };
@@ -709,7 +724,7 @@ namespace BaiTap2_RSA
             Label lblPadding = new Label
             {
                 Text = "Cơ chế đệm (Padding):",
-                Location = new Point(14, 92),
+                Location = new Point(14, 88),
                 AutoSize = true,
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold)
             };
@@ -717,16 +732,16 @@ namespace BaiTap2_RSA
             radOaep = new RadioButton
             {
                 Text = "OAEP with SHA-256 (Chuẩn an toàn hiện đại - Max 190 bytes)",
-                Location = new Point(160, 90),
-                Size = new Size(420, 24),
+                Location = new Point(175, 86),
+                Size = new Size(430, 24),
                 Checked = true
             };
 
             radPkcs1 = new RadioButton
             {
                 Text = "PKCS#1 v1.5 (Tương thích cũ - Max 245 bytes)",
-                Location = new Point(590, 90),
-                Size = new Size(340, 24)
+                Location = new Point(615, 86),
+                Size = new Size(350, 24)
             };
 
             cardInput.Controls.AddRange(new Control[] { lblInputTitle, lblByteCount, txtPlainText, btnGenAesKey, lblPadding, radOaep, radPkcs1 });
@@ -735,8 +750,8 @@ namespace BaiTap2_RSA
             // Khung Mã Hóa (Dùng Public Key)
             CuteCard cardEnc = new CuteCard
             {
-                Location = new Point(14, 148),
-                Size = new Size(577, 390),
+                Location = new Point(14, 134),
+                Size = new Size(577, 370),
                 CardBackground = Color.White
             };
             Label lblEnc = new Label
@@ -744,14 +759,14 @@ namespace BaiTap2_RSA
                 Text = "🔒 Mã Hóa bằng RSA Public Key (Yêu cầu 5):",
                 Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(46, 125, 50),
-                Location = new Point(14, 10),
+                Location = new Point(14, 8),
                 AutoSize = true
             };
             CuteButton btnEncrypt = new CuteButton
             {
                 Text = "🔒 Tiến Hành Mã Hóa",
-                Size = new Size(220, 38),
-                Location = new Point(14, 35),
+                Size = new Size(220, 36),
+                Location = new Point(14, 30),
                 NormalColor = Color.FromArgb(46, 125, 50),
                 HoverColor = Color.FromArgb(36, 105, 40)
             };
@@ -760,8 +775,8 @@ namespace BaiTap2_RSA
             CuteButton btnSaveCipher = new CuteButton
             {
                 Text = "💾 Lưu Ciphertext Ra File",
-                Size = new Size(230, 38),
-                Location = new Point(250, 35),
+                Size = new Size(235, 36),
+                Location = new Point(245, 30),
                 NormalColor = Color.FromArgb(56, 142, 60),
                 HoverColor = Color.FromArgb(46, 125, 50)
             };
@@ -770,14 +785,14 @@ namespace BaiTap2_RSA
             Label lblB64 = new Label
             {
                 Text = "Bản mã (Ciphertext dạng Base64):",
-                Location = new Point(14, 76),
+                Location = new Point(14, 70),
                 AutoSize = true,
                 Font = new Font("Segoe UI", 8.5F, FontStyle.Bold)
             };
             txtCipherBase64 = new TextBox
             {
-                Location = new Point(14, 98),
-                Size = new Size(547, 115),
+                Location = new Point(14, 90),
+                Size = new Size(547, 102),
                 Multiline = true,
                 ScrollBars = ScrollBars.Vertical,
                 Font = new Font("Consolas", 8.5F),
@@ -788,14 +803,14 @@ namespace BaiTap2_RSA
             Label lblHex = new Label
             {
                 Text = "Bản mã (Dạng Hex dump):",
-                Location = new Point(14, 222),
+                Location = new Point(14, 198),
                 AutoSize = true,
                 Font = new Font("Segoe UI", 8.5F, FontStyle.Bold)
             };
             txtCipherHex = new TextBox
             {
-                Location = new Point(14, 244),
-                Size = new Size(547, 130),
+                Location = new Point(14, 218),
+                Size = new Size(547, 138),
                 Multiline = true,
                 ScrollBars = ScrollBars.Vertical,
                 Font = new Font("Consolas", 8.5F),
@@ -808,8 +823,8 @@ namespace BaiTap2_RSA
             // Khung Giải Mã & So sánh (Dùng Private Key)
             CuteCard cardDec = new CuteCard
             {
-                Location = new Point(611, 148),
-                Size = new Size(577, 390),
+                Location = new Point(611, 134),
+                Size = new Size(577, 370),
                 CardBackground = Color.White
             };
             Label lblDec = new Label
@@ -817,14 +832,14 @@ namespace BaiTap2_RSA
                 Text = "🔓 Giải Mã bằng RSA Private Key & So Sánh (Yêu cầu 6):",
                 Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(198, 40, 40),
-                Location = new Point(14, 10),
+                Location = new Point(14, 8),
                 AutoSize = true
             };
             CuteButton btnLoadCipher = new CuteButton
             {
                 Text = "📂 Nạp File Cipher",
-                Size = new Size(200, 38),
-                Location = new Point(14, 35),
+                Size = new Size(200, 36),
+                Location = new Point(14, 30),
                 NormalColor = Color.FromArgb(198, 40, 40),
                 HoverColor = Color.FromArgb(170, 30, 30)
             };
@@ -833,8 +848,8 @@ namespace BaiTap2_RSA
             CuteButton btnDecrypt = new CuteButton
             {
                 Text = "🔓 Tiến Hành Giải Mã",
-                Size = new Size(220, 38),
-                Location = new Point(230, 35),
+                Size = new Size(220, 36),
+                Location = new Point(225, 30),
                 NormalColor = Color.FromArgb(216, 27, 96),
                 HoverColor = Color.FromArgb(190, 20, 80)
             };
@@ -844,7 +859,7 @@ namespace BaiTap2_RSA
             {
                 Text = "Chờ giải mã để đối chiếu",
                 Size = new Size(547, 32),
-                Location = new Point(14, 78),
+                Location = new Point(14, 72),
                 BadgeColor = Color.FromArgb(245, 245, 245),
                 ForeColor = Color.FromArgb(100, 100, 100)
             };
@@ -852,14 +867,14 @@ namespace BaiTap2_RSA
             Label lblDecResult = new Label
             {
                 Text = "Kết quả sau khi giải mã (Decrypted Plaintext):",
-                Location = new Point(14, 116),
+                Location = new Point(14, 110),
                 AutoSize = true,
                 Font = new Font("Segoe UI", 8.5F, FontStyle.Bold)
             };
             txtDecryptedResult = new TextBox
             {
-                Location = new Point(14, 138),
-                Size = new Size(547, 236),
+                Location = new Point(14, 130),
+                Size = new Size(547, 226),
                 Multiline = true,
                 ScrollBars = ScrollBars.Vertical,
                 Font = new Font("Consolas", 9F),
@@ -1042,15 +1057,15 @@ namespace BaiTap2_RSA
 
             CuteCard cardTop = new CuteCard
             {
-                Location = new Point(14, 12),
-                Size = new Size(1174, 75),
+                Location = new Point(14, 10),
+                Size = new Size(1174, 66),
                 CardBackground = Color.White
             };
 
             Label lblIter = new Label
             {
-                Text = "Số lần lặp thử nghiệm (Iterations):",
-                Location = new Point(16, 26),
+                Text = "Số lần lặp thử nghiệm:",
+                Location = new Point(16, 23),
                 AutoSize = true,
                 Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(70, 70, 80)
@@ -1058,8 +1073,8 @@ namespace BaiTap2_RSA
 
             numIterations = new NumericUpDown
             {
-                Location = new Point(275, 24),
-                Size = new Size(120, 28),
+                Location = new Point(190, 20),
+                Size = new Size(100, 28),
                 Minimum = 50,
                 Maximum = 5000,
                 Value = 500,
@@ -1071,7 +1086,7 @@ namespace BaiTap2_RSA
             {
                 Text = "🚀 Bắt Đầu Đo Lường Tốc Độ",
                 Size = new Size(240, 38),
-                Location = new Point(420, 18),
+                Location = new Point(305, 14),
                 NormalColor = Color.FromArgb(255, 111, 0),
                 HoverColor = Color.FromArgb(230, 81, 0)
             };
@@ -1079,8 +1094,8 @@ namespace BaiTap2_RSA
 
             prgBenchmark = new ProgressBar
             {
-                Location = new Point(690, 24),
-                Size = new Size(465, 26),
+                Location = new Point(560, 20),
+                Size = new Size(595, 26),
                 Style = ProgressBarStyle.Continuous
             };
 
@@ -1090,8 +1105,8 @@ namespace BaiTap2_RSA
             // 3 Card tóm tắt trực quan
             CuteCard cardPubBox = new CuteCard
             {
-                Location = new Point(14, 98),
-                Size = new Size(375, 110),
+                Location = new Point(14, 84),
+                Size = new Size(375, 96),
                 CardBackground = Color.FromArgb(240, 248, 255),
                 BorderColor = Color.FromArgb(180, 220, 250)
             };
@@ -1100,15 +1115,15 @@ namespace BaiTap2_RSA
                 Text = "🌐 PUBLIC KEY OPERATION (e = 65537)",
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(21, 101, 192),
-                Location = new Point(14, 12),
+                Location = new Point(14, 10),
                 AutoSize = true
             };
             lblPubOps = new Label
             {
                 Text = "Tốc độ: -- ops/s",
-                Font = new Font("Segoe UI", 14F, FontStyle.Bold),
+                Font = new Font("Segoe UI", 15F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(13, 71, 161),
-                Location = new Point(14, 40),
+                Location = new Point(14, 36),
                 AutoSize = true
             };
             cardPubBox.Controls.AddRange(new Control[] { lblPubT, lblPubOps });
@@ -1116,8 +1131,8 @@ namespace BaiTap2_RSA
 
             CuteCard cardPrivBox = new CuteCard
             {
-                Location = new Point(405, 98),
-                Size = new Size(375, 110),
+                Location = new Point(405, 84),
+                Size = new Size(375, 96),
                 CardBackground = Color.FromArgb(255, 245, 245),
                 BorderColor = Color.FromArgb(255, 205, 210)
             };
@@ -1126,15 +1141,15 @@ namespace BaiTap2_RSA
                 Text = "🔒 PRIVATE KEY OPERATION (d ~ 2048-bit)",
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(198, 40, 40),
-                Location = new Point(14, 12),
+                Location = new Point(14, 10),
                 AutoSize = true
             };
             lblPrivOps = new Label
             {
                 Text = "Tốc độ: -- ops/s",
-                Font = new Font("Segoe UI", 14F, FontStyle.Bold),
+                Font = new Font("Segoe UI", 15F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(183, 28, 28),
-                Location = new Point(14, 40),
+                Location = new Point(14, 36),
                 AutoSize = true
             };
             cardPrivBox.Controls.AddRange(new Control[] { lblPrivT, lblPrivOps });
@@ -1142,8 +1157,8 @@ namespace BaiTap2_RSA
 
             CuteCard cardRatioBox = new CuteCard
             {
-                Location = new Point(795, 98),
-                Size = new Size(393, 110),
+                Location = new Point(795, 84),
+                Size = new Size(393, 96),
                 CardBackground = Color.FromArgb(243, 229, 245),
                 BorderColor = Color.FromArgb(206, 147, 216)
             };
@@ -1152,15 +1167,15 @@ namespace BaiTap2_RSA
                 Text = "⚡ TỶ LỆ CHÊNH LỆCH HIỆU NĂNG",
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(106, 27, 154),
-                Location = new Point(14, 12),
+                Location = new Point(14, 10),
                 AutoSize = true
             };
             lblSpeedRatio = new Label
             {
                 Text = "Public nhanh hơn: -- lần",
-                Font = new Font("Segoe UI", 14F, FontStyle.Bold),
+                Font = new Font("Segoe UI", 15F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(74, 20, 140),
-                Location = new Point(14, 40),
+                Location = new Point(14, 36),
                 AutoSize = true
             };
             cardRatioBox.Controls.AddRange(new Control[] { lblRatioT, lblSpeedRatio });
@@ -1169,22 +1184,23 @@ namespace BaiTap2_RSA
             // Khung báo cáo chi tiết & Giải thích lý thuyết toán học
             CuteCard cardReport = new CuteCard
             {
-                Location = new Point(14, 220),
-                Size = new Size(1174, 305),
+                Location = new Point(14, 186),
+                Size = new Size(1174, 318),
                 CardBackground = Color.White
             };
             Label lblRepT = new Label
             {
                 Text = "📑 Báo Cáo Đo Đạc Thực Tế & Phân Tích Cơ Chế Toán Học (Lũy Thừa Nhị Phân & CRT):",
+                UseMnemonic = false,
                 Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(70, 70, 80),
-                Location = new Point(14, 10),
+                Location = new Point(14, 8),
                 AutoSize = true
             };
             txtBenchmarkReport = new TextBox
             {
-                Location = new Point(14, 35),
-                Size = new Size(1146, 255),
+                Location = new Point(14, 30),
+                Size = new Size(1146, 276),
                 Multiline = true,
                 ScrollBars = ScrollBars.Vertical,
                 Font = new Font("Consolas", 9F),
@@ -1243,8 +1259,8 @@ namespace BaiTap2_RSA
 
             CuteCard cardTop = new CuteCard
             {
-                Location = new Point(14, 12),
-                Size = new Size(1174, 125),
+                Location = new Point(14, 10),
+                Size = new Size(1174, 118),
                 CardBackground = Color.White
             };
 
@@ -1259,8 +1275,8 @@ namespace BaiTap2_RSA
 
             txtShaInput = new TextBox
             {
-                Location = new Point(14, 35),
-                Size = new Size(730, 75),
+                Location = new Point(14, 32),
+                Size = new Size(720, 75),
                 Multiline = true,
                 Font = new Font("Consolas", 10F),
                 Text = "Nguyen Thi Ngoc Linh - K59KTP.K01"
@@ -1272,15 +1288,15 @@ namespace BaiTap2_RSA
                 Text = "Thử nghiệm đổi cực ít dữ liệu đầu vào (Hiệu ứng Tuyết lở):",
                 Font = new Font("Segoe UI", 8.5F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(100, 100, 110),
-                Location = new Point(760, 10),
+                Location = new Point(750, 10),
                 AutoSize = true
             };
 
             CuteButton btnTest1 = new CuteButton
             {
                 Text = "1. Thêm dấu chấm '.'",
-                Size = new Size(190, 34),
-                Location = new Point(760, 35),
+                Size = new Size(195, 34),
+                Location = new Point(750, 32),
                 NormalColor = Color.FromArgb(124, 77, 255),
                 HoverColor = Color.FromArgb(101, 51, 238)
             };
@@ -1289,8 +1305,8 @@ namespace BaiTap2_RSA
             CuteButton btnTest2 = new CuteButton
             {
                 Text = "2. Đổi 'N' thành 'n'",
-                Size = new Size(190, 34),
-                Location = new Point(965, 35),
+                Size = new Size(195, 34),
+                Location = new Point(955, 32),
                 NormalColor = Color.FromArgb(156, 39, 176),
                 HoverColor = Color.FromArgb(142, 36, 170)
             };
@@ -1305,8 +1321,8 @@ namespace BaiTap2_RSA
             CuteButton btnTest3 = new CuteButton
             {
                 Text = "3. Lật 1 bit cuối (Flip bit)",
-                Size = new Size(190, 34),
-                Location = new Point(760, 76),
+                Size = new Size(195, 34),
+                Location = new Point(750, 72),
                 NormalColor = Color.FromArgb(233, 30, 99),
                 HoverColor = Color.FromArgb(216, 27, 96)
             };
@@ -1321,8 +1337,8 @@ namespace BaiTap2_RSA
             CuteButton btnResetBaseline = new CuteButton
             {
                 Text = "🔄 Đặt làm mốc so sánh",
-                Size = new Size(190, 34),
-                Location = new Point(965, 76),
+                Size = new Size(195, 34),
+                Location = new Point(955, 72),
                 NormalColor = Color.FromArgb(67, 160, 71),
                 HoverColor = Color.FromArgb(56, 142, 60)
             };
@@ -1341,8 +1357,8 @@ namespace BaiTap2_RSA
             // Khung hiển thị Hash & So sánh
             CuteCard cardHash = new CuteCard
             {
-                Location = new Point(14, 148),
-                Size = new Size(1174, 385),
+                Location = new Point(14, 136),
+                Size = new Size(1174, 368),
                 CardBackground = Color.White
             };
 
@@ -1351,13 +1367,13 @@ namespace BaiTap2_RSA
                 Text = "Mã băm SHA-256 Hiện Tại (256 bits = 64 Hex chars):",
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(46, 125, 50),
-                Location = new Point(14, 12),
+                Location = new Point(14, 8),
                 AutoSize = true
             };
             txtCurrentHashHex = new TextBox
             {
-                Location = new Point(14, 34),
-                Size = new Size(1146, 28),
+                Location = new Point(14, 28),
+                Size = new Size(1146, 26),
                 Font = new Font("Consolas", 10.5F, FontStyle.Bold),
                 ReadOnly = true,
                 BackColor = Color.FromArgb(240, 255, 240)
@@ -1368,13 +1384,13 @@ namespace BaiTap2_RSA
                 Text = "Mã băm SHA-256 Mốc Trước Đó (Để đánh giá sự thay đổi):",
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(198, 40, 40),
-                Location = new Point(14, 70),
+                Location = new Point(14, 58),
                 AutoSize = true
             };
             txtPrevHashHex = new TextBox
             {
-                Location = new Point(14, 92),
-                Size = new Size(1146, 28),
+                Location = new Point(14, 78),
+                Size = new Size(1146, 26),
                 Font = new Font("Consolas", 10.5F, FontStyle.Bold),
                 ReadOnly = true,
                 BackColor = Color.FromArgb(255, 245, 245)
@@ -1386,7 +1402,7 @@ namespace BaiTap2_RSA
                 Text = "Số bit biến đổi: -- / 256 bits",
                 Font = new Font("Segoe UI", 11F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(106, 27, 154),
-                Location = new Point(14, 130),
+                Location = new Point(14, 112),
                 AutoSize = true
             };
 
@@ -1395,7 +1411,7 @@ namespace BaiTap2_RSA
                 Text = "Tỷ lệ biến đổi (Avalanche Rate): -- % (Lý thuyết tối ưu ~ 50%)",
                 Font = new Font("Segoe UI", 11F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(198, 40, 40),
-                Location = new Point(480, 130),
+                Location = new Point(410, 112),
                 AutoSize = true
             };
 
@@ -1404,14 +1420,14 @@ namespace BaiTap2_RSA
                 Text = "🔍 Đối chiếu chuỗi nhị phân 256 bits (Các bit bị đảo lật do hiệu ứng tuyết lở):",
                 Font = new Font("Segoe UI", 9F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(70, 70, 80),
-                Location = new Point(14, 165),
+                Location = new Point(14, 140),
                 AutoSize = true
             };
 
             rtbBitDiff = new RichTextBox
             {
-                Location = new Point(14, 190),
-                Size = new Size(1146, 175),
+                Location = new Point(14, 162),
+                Size = new Size(1146, 192),
                 Font = new Font("Consolas", 9.5F),
                 ReadOnly = true,
                 BackColor = Color.FromArgb(250, 248, 255),
@@ -1479,8 +1495,8 @@ namespace BaiTap2_RSA
             // Phần 1: Ký và Xác Thực Tiêu Chuẩn
             CuteCard cardSign = new CuteCard
             {
-                Location = new Point(14, 12),
-                Size = new Size(1174, 210),
+                Location = new Point(14, 10),
+                Size = new Size(1174, 195),
                 CardBackground = Color.White
             };
 
@@ -1489,14 +1505,14 @@ namespace BaiTap2_RSA
                 Text = "✍️ Phần 1: Ký Số và Xác Thực Chữ Ký (Digital Signature Standard):",
                 Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
                 ForeColor = Color.FromArgb(106, 27, 154),
-                Location = new Point(14, 10),
+                Location = new Point(14, 8),
                 AutoSize = true
             };
 
             txtSignInput = new TextBox
             {
-                Location = new Point(14, 35),
-                Size = new Size(575, 50),
+                Location = new Point(14, 32),
+                Size = new Size(560, 42),
                 Multiline = true,
                 Font = new Font("Consolas", 9.5F),
                 Text = "Hop dong mua ban - Nguyen Thi Ngoc Linh - So tien 100.000.000 VND"
@@ -1506,7 +1522,7 @@ namespace BaiTap2_RSA
             {
                 Text = "✍️ Ký Số (Sign Data)",
                 Size = new Size(175, 38),
-                Location = new Point(605, 35),
+                Location = new Point(585, 32),
                 NormalColor = Color.FromArgb(106, 27, 154),
                 HoverColor = Color.FromArgb(74, 20, 140)
             };
@@ -1516,7 +1532,7 @@ namespace BaiTap2_RSA
             {
                 Text = "🔍 Xác Thực (Verify)",
                 Size = new Size(175, 38),
-                Location = new Point(790, 35),
+                Location = new Point(770, 32),
                 NormalColor = Color.FromArgb(46, 125, 50),
                 HoverColor = Color.FromArgb(36, 105, 40)
             };
@@ -1526,7 +1542,7 @@ namespace BaiTap2_RSA
             {
                 Text = "😈 Sửa Dữ Liệu (Tamper)",
                 Size = new Size(190, 38),
-                Location = new Point(975, 35),
+                Location = new Point(955, 32),
                 NormalColor = Color.FromArgb(198, 40, 40),
                 HoverColor = Color.FromArgb(170, 30, 30)
             };
@@ -1540,20 +1556,20 @@ namespace BaiTap2_RSA
             {
                 Text = "Chờ ký số...",
                 Size = new Size(560, 32),
-                Location = new Point(605, 80)
+                Location = new Point(585, 74)
             };
 
             Label lblSigOut = new Label
             {
                 Text = "Chữ ký số tạo bởi Private Key (Base64):",
                 Font = new Font("Segoe UI", 8.5F, FontStyle.Bold),
-                Location = new Point(14, 90),
+                Location = new Point(14, 80),
                 AutoSize = true
             };
             txtSignatureOutput = new TextBox
             {
-                Location = new Point(14, 115),
-                Size = new Size(1146, 80),
+                Location = new Point(14, 102),
+                Size = new Size(1146, 78),
                 Multiline = true,
                 ScrollBars = ScrollBars.Vertical,
                 Font = new Font("Consolas", 8.5F),
@@ -1567,8 +1583,8 @@ namespace BaiTap2_RSA
             // Phần 2: Đề xuất & Thực nghiệm: Cùng dữ liệu + Cùng người ký -> Chữ ký khác nhau mỗi lần
             CuteCard cardPss = new CuteCard
             {
-                Location = new Point(14, 230),
-                Size = new Size(1174, 280),
+                Location = new Point(14, 212),
+                Size = new Size(1174, 294),
                 CardBackground = Color.White
             };
 
@@ -1584,8 +1600,8 @@ namespace BaiTap2_RSA
             CuteButton btnTestPss3Times = new CuteButton
             {
                 Text = "🧪 Ký 3 Lần Bằng Chuẩn RSASSA-PSS (RFC 8017)",
-                Size = new Size(390, 36),
-                Location = new Point(14, 32),
+                Size = new Size(380, 36),
+                Location = new Point(14, 30),
                 NormalColor = Color.FromArgb(198, 40, 40),
                 HoverColor = Color.FromArgb(170, 30, 30)
             };
@@ -1595,7 +1611,7 @@ namespace BaiTap2_RSA
             {
                 Text = "✅ Xác Thực Cả 3 Chữ Ký Bằng Public Key",
                 Size = new Size(330, 36),
-                Location = new Point(415, 32),
+                Location = new Point(405, 30),
                 NormalColor = Color.FromArgb(46, 125, 50),
                 HoverColor = Color.FromArgb(36, 105, 40)
             };
@@ -1604,26 +1620,26 @@ namespace BaiTap2_RSA
             badgePssVerify = new CuteBadge
             {
                 Text = "Chưa thử nghiệm PSS",
-                Size = new Size(395, 34),
-                Location = new Point(760, 33)
+                Size = new Size(405, 36),
+                Location = new Point(745, 30)
             };
 
-            Label lblP1 = new Label { Text = "Chữ ký 1 (PSS Salt A):", Location = new Point(14, 74), AutoSize = true, Font = new Font("Segoe UI", 8F, FontStyle.Bold) };
-            txtPssResult1 = new TextBox { Location = new Point(14, 94), Size = new Size(1146, 22), Font = new Font("Consolas", 8F), ReadOnly = true, BackColor = Color.FromArgb(255, 250, 250) };
+            Label lblP1 = new Label { Text = "Chữ ký 1 (PSS Salt A):", Location = new Point(14, 72), AutoSize = true, Font = new Font("Segoe UI", 8F, FontStyle.Bold) };
+            txtPssResult1 = new TextBox { Location = new Point(14, 92), Size = new Size(1146, 24), Font = new Font("Consolas", 8.5F), ReadOnly = true, BackColor = Color.FromArgb(255, 250, 250) };
 
-            Label lblP2 = new Label { Text = "Chữ ký 2 (PSS Salt B):", Location = new Point(14, 120), AutoSize = true, Font = new Font("Segoe UI", 8F, FontStyle.Bold) };
-            txtPssResult2 = new TextBox { Location = new Point(14, 140), Size = new Size(1146, 22), Font = new Font("Consolas", 8F), ReadOnly = true, BackColor = Color.FromArgb(250, 255, 250) };
+            Label lblP2 = new Label { Text = "Chữ ký 2 (PSS Salt B):", Location = new Point(14, 118), AutoSize = true, Font = new Font("Segoe UI", 8F, FontStyle.Bold) };
+            txtPssResult2 = new TextBox { Location = new Point(14, 138), Size = new Size(1146, 24), Font = new Font("Consolas", 8.5F), ReadOnly = true, BackColor = Color.FromArgb(250, 255, 250) };
 
-            Label lblP3 = new Label { Text = "Chữ ký 3 (PSS Salt C):", Location = new Point(14, 166), AutoSize = true, Font = new Font("Segoe UI", 8F, FontStyle.Bold) };
-            txtPssResult3 = new TextBox { Location = new Point(14, 186), Size = new Size(1146, 22), Font = new Font("Consolas", 8F), ReadOnly = true, BackColor = Color.FromArgb(250, 250, 255) };
+            Label lblP3 = new Label { Text = "Chữ ký 3 (PSS Salt C):", Location = new Point(14, 164), AutoSize = true, Font = new Font("Segoe UI", 8F, FontStyle.Bold) };
+            txtPssResult3 = new TextBox { Location = new Point(14, 184), Size = new Size(1146, 24), Font = new Font("Consolas", 8.5F), ReadOnly = true, BackColor = Color.FromArgb(250, 250, 255) };
 
             Label lblExplanation = new Label
             {
                 Text = "📌 GIẢI THÍCH PHƯƠNG PHÁP: Áp dụng chuẩn RSASSA-PSS (RFC 8017). Mỗi lần ký, thuật toán sinh ra một chuỗi Muối ngẫu nhiên (Random Salt 32 bytes). Dù văn bản và khóa bí mật hoàn toàn giống nhau, chữ ký số sinh ra luôn khác biệt 100%, chống lại tấn công replay attack, nhưng Public Key vẫn xác thực hợp lệ tuyệt đối!",
                 Font = new Font("Segoe UI", 8.25F, FontStyle.Italic),
                 ForeColor = Color.FromArgb(80, 80, 90),
-                Location = new Point(14, 218),
-                Size = new Size(1146, 45)
+                Location = new Point(14, 216),
+                Size = new Size(1146, 65)
             };
 
             cardPss.Controls.AddRange(new Control[] { lblPssT, btnTestPss3Times, btnVerifyAll3, badgePssVerify, lblP1, txtPssResult1, lblP2, txtPssResult2, lblP3, txtPssResult3, lblExplanation });
